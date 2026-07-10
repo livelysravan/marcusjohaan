@@ -6,7 +6,7 @@
     <title>Marcus Johaanilious</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+Malayalam:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -85,7 +85,7 @@
         }
 
         .quote-area {
-            min-height: 140px;
+            min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -95,11 +95,19 @@
         .quote-text {
             font-size: 22px;
             font-weight: 330;
-            line-height: 1.55;
+            line-height: 1.6;
             color: #f0f0f2;
             text-align: center;
             letter-spacing: -0.15px;
             transition: opacity 0.2s ease;
+        }
+
+        /* Malayalam font fallback */
+        .quote-text.malayalam {
+            font-family: "Noto Sans Malayalam", "Inter", sans-serif;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 1.7;
         }
 
         .nav {
@@ -181,8 +189,13 @@
                 line-height: 1.5;
             }
 
+            .quote-text.malayalam {
+                font-size: 18px;
+                line-height: 1.6;
+            }
+
             .quote-area {
-                min-height: 120px;
+                min-height: 130px;
             }
 
             .nav-btn {
@@ -201,8 +214,13 @@
                 font-size: 16px;
             }
 
+            .quote-text.malayalam {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
             .quote-area {
-                min-height: 100px;
+                min-height: 110px;
             }
 
             .nav-btn {
@@ -259,7 +277,10 @@
     </div>
 
     <script>
-        const quotes = [
+        // --------------------------------------------------------------
+        // 40 ENGLISH QUOTES
+        // --------------------------------------------------------------
+        const englishQuotes = [
             "The only person you are destined to become is the person you decide to be.",
             "In the middle of difficulty lies opportunity.",
             "What you get by achieving your goals is not as important as what you become.",
@@ -286,85 +307,116 @@
             "Do not wait to strike till the iron is hot, but make it hot by striking.",
             "Dream big and dare to fail.",
             "Your time is limited, so don't waste it living someone else's life.",
-            "Remember that you are going to die is the best way to avoid the trap of thinking you have something to lose.",
             "The only way to be truly satisfied is to do what you believe is great work.",
             "You can't connect the dots looking forward. You have to trust that the dots will connect in your future.",
             "Stay hungry. Stay foolish.",
             "The unexamined life is not worth living.",
-            "I know that I am intelligent because I know that I know nothing.",
-            "To find yourself, think for yourself.",
-            "Education is the kindling of a flame, not the filling of a vessel.",
-            "It is not that I'm so smart. But I stay with the questions much longer.",
-            "The only true wisdom is in knowing you know nothing.",
             "The journey of a thousand miles begins with one step.",
             "He who conquers himself is the mightiest warrior.",
             "Be yourself. Everyone else is already taken.",
-            "Two things are infinite, the universe and human stupidity, and I'm not sure about the universe.",
             "Life is what happens when you're busy making other plans.",
-            "It is better to be hated for what you are than to be loved for what you are not.",
-            "The only thing necessary for the triumph of evil is for good men to do nothing.",
             "In three words I can sum up everything I've learned about life: it goes on.",
-            "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
-            "Don't judge each day by the harvest you reap but by the seeds that you plant.",
-            "The purpose of our lives is to be happy.",
-            "Life is really simple, but we insist on making it complicated.",
-            "It is during our darkest moments that we must focus to see the light.",
-            "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-            "In the end, it's not the years in your life that count. It's the life in your years.",
-            "The future belongs to those who believe in the beauty of their dreams.",
-            "The purpose of life is a life of purpose.",
-            "You must be the change you wish to see in the world.",
-            "If you're going through hell, keep going.",
             "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-            "The only impossible journey is the one you never begin.",
             "Life isn't about finding yourself. Life is about creating yourself.",
             "Whether you think you can or you think you can't, you're right.",
-            "The best revenge is massive success.",
-            "Don't let yesterday take up too much of today.",
-            "A person who never made a mistake never tried anything new.",
-            "It's not the load that breaks you down, it's the way you carry it.",
-            "Without struggle, there is no progress.",
-            "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-            "Great minds discuss ideas. Average minds discuss events. Small minds discuss people.",
-            "Our lives begin to end the day we become silent about things that matter.",
-            "Only a life lived for others is a life worthwhile.",
-            "Try not to become a man of success, but rather become a man of value.",
-            "Success is not the key to happiness. Happiness is the key to success.",
-            "If you love life, don't waste time, for time is what life is made of.",
-            "No one can make you feel inferior without your consent.",
-            "What you do speaks so loudly that I cannot hear what you say.",
             "Start where you are. Use what you have. Do what you can.",
-            "It's not what happens to you, but how you react to it that matters.",
-            "The mind is not a vessel to be filled, but a fire to be kindled.",
-            "A journey of self-discovery begins with a single honest question.",
-            "Your present circumstances don't determine where you can go. They merely determine where you start.",
-            "Courage is not the absence of fear, but the triumph over it.",
-            "Some people want it to happen, some wish it would happen, others make it happen.",
-            "The best way to predict the future is to create it.",
-            "We become what we think about.",
-            "Champions are made from something they have deep inside them. A desire. A dream. A vision.",
-            "Be not afraid of growing slowly. Be afraid only of standing still.",
-            "There is no passion to be found playing small, in settling for a life that is less than the one you are capable of living.",
-            "Life is never made unbearable by circumstances, but only by lack of meaning and purpose.",
-            "Everything you've ever wanted is on the other side of fear.",
-            "The secret of change is to focus all of your energy not on fighting the old, but on building the new.",
-            "Don't be afraid to give up the good to go for the great.",
-            "Perfection is not attainable, but if we chase perfection we can catch excellence.",
-            "The only limit to our realization of tomorrow is our doubts of today.",
-            "You don't have to be great to start, but you have to start to be great.",
-            "Character cannot be developed in ease and quiet. Only through experience of trial and suffering can the soul be strengthened.",
-            "The most difficult thing is the decision to act, the rest is merely tenacity.",
-            "The only person you should try to be better than is the person you were yesterday.",
-            "It is never too late to be what you might have been.",
-            "The darkest hour has only sixty minutes.",
-            "What you get by achieving your goals is not as important as what you become by achieving them.",
-            "Turn your wounds into wisdom.",
-            "Never let the fear of striking out keep you from playing the game.",
-            "Life shrinks or expands in proportion to one's courage.",
-            "The bravest sight in the world is to see a great man struggling against adversity.",
-            "When you arise in the morning, think of what a precious privilege it is to be alive, to breathe, to think, to enjoy, to love."
+            "It is never too late to be what you might have been."
         ];
 
+        // --------------------------------------------------------------
+        // 60 MALAYALAM QUOTES (Deep, meaningful, motivational)
+        // --------------------------------------------------------------
+        const malayalamQuotes = [
+            "ജീവിതം ഒരു യാത്രയാണ്, ലക്ഷ്യമല്ല.",
+            "വിജയം എന്നത് പരാജയത്തിൽ നിന്ന് പരാജയത്തിലേക്ക് നടക്കുമ്പോൾ ഉത്സാഹം നഷ്ടപ്പെടാതിരിക്കുക എന്നതാണ്.",
+            "നിങ്ങൾ ചിന്തിക്കുന്നതെല്ലാം നിങ്ങൾ ആയിത്തീരുന്നു.",
+            "ലോകത്തിലെ ഏറ്റവും വലിയ മഹത്വം ഒരിക്കലും വീഴാതിരിക്കുക എന്നതല്ല, ഓരോ തവണ വീഴുമ്പോഴും എഴുന്നേൽക്കുക എന്നതാണ്.",
+            "ബുദ്ധിമുട്ടുകളുടെ നടുവിലാണ് അവസരങ്ങൾ ഒളിഞ്ഞിരിക്കുന്നത്.",
+            "നിങ്ങൾ ആകാൻ ആഗ്രഹിക്കുന്ന വ്യക്തിയാകാനുള്ള തീരുമാനം എടുക്കുന്നത് നിങ്ങളുടെ കയ്യിലാണ്.",
+            "ആരംഭിക്കാനുള്ള ഏക മാർഗ്ഗം സംസാരം നിർത്തി പ്രവർത്തിക്കുക എന്നതാണ്.",
+            "നിങ്ങൾ എത്ര സാവധാനത്തിൽ പോയാലും പ്രശ്നമില്ല, നിർത്താതെ പോകുക എന്നതാണ് പ്രധാനം.",
+            "സന്തോഷം എന്നത് റെഡി മേഡ് ആയി ലഭിക്കുന്ന ഒന്നല്ല. അത് നിങ്ങളുടെ സ്വന്തം പ്രവർത്തനങ്ങളിൽ നിന്ന് ഉണ്ടാകുന്നതാണ്.",
+            "മികച്ച ജോലി ചെയ്യാനുള്ള ഏക മാർഗ്ഗം നിങ്ങൾ ചെയ്യുന്ന കാര്യങ്ങളെ സ്നേഹിക്കുക എന്നതാണ്.",
+            "നിങ്ങൾക്ക് സ്വയം ഉയർത്താൻ ആഗ്രഹമുണ്ടെങ്കിൽ, മറ്റൊരാളെ ഉയർത്തുക.",
+            "പരിമിതികൾ നമ്മുടെ മനസ്സിൽ മാത്രമാണ്. ഭാവന ഉപയോഗിച്ചാൽ സാധ്യതകൾ അനന്തമാണ്.",
+            "ജീവിതത്തിലെ പ്രശ്നങ്ങളാൽ തള്ളപ്പെടരുത്. നിങ്ങളുടെ സ്വപ്നങ്ങളാൽ നയിക്കപ്പെടുക.",
+            "ശക്തി ശാരീരിക ശേഷിയിൽ നിന്ന് വരുന്നതല്ല. അത് അടക്കമുള്ള ഇച്ഛാശക്തിയിൽ നിന്നാണ്.",
+            "മുന്നേറാനുള്ള രഹസ്യം ആരംഭിക്കുക എന്നതാണ്.",
+            "നിങ്ങൾക്ക് കഴിയുമെന്ന് വിശ്വസിക്കുക, നിങ്ങൾ പകുതി വഴി എത്തിയിരിക്കുന്നു.",
+            "വീഴ്ച സംഭവിക്കുന്നില്ല എന്നതല്ല പ്രധാനം, എഴുന്നേൽക്കുക എന്നതാണ് പ്രധാനം.",
+            "പരാജയം എന്നത് കൂടുതൽ ബുദ്ധിപൂർവ്വം വീണ്ടും ആരംഭിക്കാനുള്ള അവസരം മാത്രമാണ്.",
+            "നിങ്ങളുടെ ചിന്തകൾ മാറ്റുക, നിങ്ങളുടെ ലോകം മാറും.",
+            "നിങ്ങൾ എടുക്കാത്ത ഷോട്ടുകളുടെ 100 ശതമാനവും നിങ്ങൾ നഷ്ടപ്പെടുത്തുന്നു.",
+            "ഒരു മരം നടാനുള്ള ഏറ്റവും നല്ല സമയം ഇരുപത് വർഷം മുമ്പായിരുന്നു. രണ്ടാമത്തെ നല്ല സമയം ഇപ്പോഴാണ്.",
+            "നിങ്ങൾ ചെയ്യുന്ന കാര്യങ്ങൾ ഒരു വ്യത്യാസം ഉണ്ടാക്കുന്നുണ്ടെന്ന് കരുതി പ്രവർത്തിക്കുക. അത് ഉണ്ടാക്കും.",
+            "നമ്മൾ ചെയ്യാൻ ഭയപ്പെടുന്നത് സാധാരണയായി നമ്മൾ ചെയ്യേണ്ടതാണ്.",
+            "ഇരുമ്പ് ചൂടാകുന്നത് വരെ കാത്തിരിക്കരുത്, അത് ചൂടാക്കുക തന്നെ.",
+            "വലുതായി സ്വപ്നം കാണുക, പരാജയപ്പെടാൻ ധൈര്യപ്പെടുക.",
+            "നിങ്ങളുടെ സമയം പരിമിതമാണ്, അത് മറ്റൊരാളുടെ ജീവിതം ജീവിച്ചു കളയരുത്.",
+            "നിങ്ങൾ മരിക്കുമെന്ന് ഓർക്കുന്നത് നിങ്ങൾക്ക് നഷ്ടപ്പെടുത്താൻ ഒന്നുമില്ലെന്ന് ചിന്തിക്കുന്ന കെണിയിൽ നിന്ന് രക്ഷപ്പെടാനുള്ള ഏറ്റവും നല്ല മാർഗമാണ്.",
+            "തൃപ്തി തോന്നാനുള്ള ഏക മാർഗം നിങ്ങൾ മഹത്തായ ജോലിയാണ് ചെയ്യുന്നതെന്ന് വിശ്വസിക്കുക എന്നതാണ്.",
+            "വിശക്കുന്നവരായി തുടരുക. ഭോഷരായി തുടരുക.",
+            "പരിശോധിക്കപ്പെടാത്ത ജീവിതം ജീവിക്കാൻ അർഹമല്ല.",
+            "ഞാൻ ബുദ്ധിമാനാണെന്ന് എനിക്കറിയാം കാരണം ഞാൻ ഒന്നും അറിയില്ലെന്ന് എനിക്കറിയാം.",
+            "സ്വയം കണ്ടെത്താൻ, സ്വയം ചിന്തിക്കുക.",
+            "വിദ്യാഭ്യാസം ഒരു പാത്രം നിറയ്ക്കലല്ല, ഒരു തീജ്വാല കത്തിക്കലാണ്.",
+            "ഞാൻ അത്ര മിടുക്കനല്ല. പക്ഷേ ഞാൻ ചോദ്യങ്ങളുമായി കൂടുതൽ സമയം ചെലവഴിക്കുന്നു.",
+            "ഒന്നും അറിയില്ലെന്ന് അറിയുക എന്നതാണ് യഥാർത്ഥ ജ്ഞാനം.",
+            "ആയിരം മൈൽ യാത്ര ആരംഭിക്കുന്നത് ഒരു ചുവട് വെയ്ക്കുന്നതിലൂടെയാണ്.",
+            "സ്വയം ജയിക്കുന്നവനാണ് ഏറ്റവും ശക്തനായ യോദ്ധാവ്.",
+            "സ്വയം ആയിരിക്കുക. മറ്റുള്ളവരെല്ലാം ഇതിനകം എടുത്തുകഴിഞ്ഞു.",
+            "ജീവിതം സംഭവിക്കുന്നത് നിങ്ങൾ മറ്റ് പ്ലാനുകൾ ഉണ്ടാക്കുന്ന തിരക്കിലായിരിക്കുമ്പോഴാണ്.",
+            "മൂന്ന് വാക്കുകളിൽ ഞാൻ ജീവിതത്തെക്കുറിച്ച് പഠിച്ചതെല്ലാം സംഗ്രഹിക്കാം: അത് മുന്നോട്ട് പോകുന്നു.",
+            "വിജയം അന്തിമമല്ല, പരാജയം മാരകവുമല്ല: തുടരാനുള്ള ധൈര്യമാണ് പ്രധാനം.",
+            "ജീവിതം സ്വയം കണ്ടെത്തുന്നതിനെക്കുറിച്ചല്ല. ജീവിതം സ്വയം സൃഷ്ടിക്കുന്നതിനെക്കുറിച്ചാണ്.",
+            "നിങ്ങൾക്ക് കഴിയുമെന്ന് കരുതുന്നുവോ അല്ലെങ്കിൽ കഴിയില്ലെന്ന് കരുതുന്നുവോ, നിങ്ങൾ രണ്ടും ശരിയാണ്.",
+            "നിങ്ങൾ എവിടെയാണോ അവിടെ നിന്ന് ആരംഭിക്കുക. നിങ്ങൾക്കുള്ളത് ഉപയോഗിക്കുക. നിങ്ങൾക്ക് ചെയ്യാൻ കഴിയുന്നത് ചെയ്യുക.",
+            "നിങ്ങൾ ആയിരുന്നേക്കാവുന്നത് ആകാൻ ഒരിക്കലും വൈകില്ല.",
+            "ഇരുണ്ട സമയങ്ങളിൽ നമ്മൾ പ്രകാശം കാണാൻ ശ്രദ്ധ കേന്ദ്രീകരിക്കണം.",
+            "ഭാവി സ്വപ്നങ്ങളുടെ സൗന്ദര്യത്തിൽ വിശ്വസിക്കുന്നവർക്കുള്ളതാണ്.",
+            "ജീവിതത്തിന്റെ ഉദ്ദേശ്യം ഉദ്ദേശ്യമുള്ള ജീവിതമാണ്.",
+            "നിങ്ങൾ ലോകത്തിൽ കാണാൻ ആഗ്രഹിക്കുന്ന മാറ്റം നിങ്ങൾ തന്നെ ആകണം.",
+            "നരകത്തിലൂടെയാണ് പോകുന്നതെങ്കിൽ, തുടർന്ന് പോകുക.",
+            "ആരംഭിക്കാത്ത ഏക അസാധ്യമായ യാത്ര നിങ്ങൾ ഒരിക്കലും ആരംഭിക്കാത്തതാണ്.",
+            "ഇന്നലെ ഇന്നിന്റെ വളരെയധികം ഭാഗം എടുക്കാൻ അനുവദിക്കരുത്.",
+            "ഒരു തെറ്റും ചെയ്യാത്ത ഒരാൾ ഒരിക്കലും പുതിയതായി ഒന്നും പരീക്ഷിച്ചിട്ടില്ല.",
+            "നിങ്ങളെ തകർക്കുന്നത് ഭാരമല്ല, അത് വഹിക്കുന്ന രീതിയാണ്.",
+            "പോരാട്ടമില്ലാതെ പുരോഗതിയില്ല.",
+            "നമുക്ക് പിന്നിലുള്ളതും നമുക്ക് മുന്നിലുള്ളതും നമുക്കുള്ളിലുള്ളതിനെ അപേക്ഷിച്ച് നിസ്സാരമാണ്.",
+            "മഹാമനസ്കർ ആശയങ്ങൾ ചർച്ച ചെയ്യുന്നു. ശരാശരി മനസ്കർ സംഭവങ്ങൾ ചർച്ച ചെയ്യുന്നു. ചെറിയ മനസ്കർ ആളുകളെ ചർച്ച ചെയ്യുന്നു.",
+            "മറ്റുള്ളവർക്കായി ജീവിക്കുന്ന ജീവിതം മാത്രമാണ് ജീവിക്കാൻ അർഹമായത്.",
+            "വിജയം സന്തോഷത്തിന്റെ താക്കോലല്ല. സന്തോഷമാണ് വിജയത്തിന്റെ താക്കോൽ.",
+            "ഭയത്തിന്റെ മറുവശത്താണ് നിങ്ങൾ ആഗ്രഹിച്ചതെല്ലാം."
+        ];
+
+        // --------------------------------------------------------------
+        // SHUFFLE & MERGE — 40 English + 60 Malayalam = 100 total
+        // --------------------------------------------------------------
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Combine all quotes with a flag for Malayalam
+        let allQuotes = [];
+
+        englishQuotes.forEach(q => {
+            allQuotes.push({ text: q, isMalayalam: false });
+        });
+
+        malayalamQuotes.forEach(q => {
+            allQuotes.push({ text: q, isMalayalam: true });
+        });
+
+        // Shuffle well
+        allQuotes = shuffleArray(allQuotes);
+
+        // --------------------------------------------------------------
+        // SCRIPT
+        // --------------------------------------------------------------
         let currentIndex = 0;
         const quoteText = document.getElementById('quoteText');
         const prevBtn = document.getElementById('prevBtn');
@@ -372,16 +424,25 @@
 
         function displayQuote(index) {
             if (index < 0) index = 0;
-            if (index >= quotes.length) index = quotes.length - 1;
+            if (index >= allQuotes.length) index = allQuotes.length - 1;
             currentIndex = index;
 
+            const quote = allQuotes[currentIndex];
+
             quoteText.classList.remove('fade-in');
+            quoteText.classList.remove('malayalam');
             void quoteText.offsetWidth;
-            quoteText.textContent = quotes[currentIndex];
+
+            quoteText.textContent = quote.text;
+
+            if (quote.isMalayalam) {
+                quoteText.classList.add('malayalam');
+            }
+
             quoteText.classList.add('fade-in');
 
             prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === quotes.length - 1;
+            nextBtn.disabled = currentIndex === allQuotes.length - 1;
         }
 
         prevBtn.addEventListener('click', () => {
@@ -389,7 +450,7 @@
         });
 
         nextBtn.addEventListener('click', () => {
-            if (currentIndex < quotes.length - 1) displayQuote(currentIndex + 1);
+            if (currentIndex < allQuotes.length - 1) displayQuote(currentIndex + 1);
         });
 
         document.addEventListener('keydown', (e) => {
