@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcus Johaanilious</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .card {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.92);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 44px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .image-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 85%;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .image-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+        }
+
+        .image-wrap::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .body {
+            padding: 28px 28px 32px;
+            position: relative;
+            margin-top: -20px;
+            background: #0d0d0d;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            color: #fff;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .quote-area {
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 0 10px;
+        }
+
+        .quote-text {
+            font-size: 22px;
+            font-weight: 330;
+            line-height: 1.55;
+            color: #f0f0f2;
+            text-align: center;
+            letter-spacing: -0.15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            max-width: 150px;
+            padding: 13px 10px;
+            border: none;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: "Inter", sans-serif;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: #1c1c1e;
+            color: #e8e8ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            -webkit-tap-highlight-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover {
+            background: #2c2c2e;
+            transform: scale(1.02);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.94);
+            background: #141416;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .nav-btn .icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .card {
+                border-radius: 32px;
+            }
+
+            .image-wrap {
+                padding-top: 80%;
+            }
+
+            .body {
+                padding: 22px 18px 24px;
+                margin-top: -16px;
+                border-radius: 22px 22px 0 0;
+            }
+
+            .name {
+                font-size: 19px;
+                margin-bottom: 18px;
+            }
+
+            .quote-text {
+                font-size: 19px;
+                line-height: 1.5;
+            }
+
+            .quote-area {
+                min-height: 120px;
+            }
+
+            .nav-btn {
+                font-size: 13px;
+                padding: 11px 8px;
+                max-width: 130px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .body {
+                padding: 16px 12px 18px;
+            }
+
+            .quote-text {
+                font-size: 16px;
+            }
+
+            .quote-area {
+                min-height: 100px;
+            }
+
+            .nav-btn {
+                font-size: 12px;
+                padding: 10px 6px;
+                max-width: 110px;
+            }
+
+            .name {
+                font-size: 17px;
+                margin-bottom: 14px;
+            }
+        }
+
+        .fade-in {
+            animation: fadeUp 0.3s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="image-wrap">
+            <img src="johaan.jpg" alt="Marcus Johaanilious" />
+        </div>
+
+        <div class="body">
+            <div class="name">Marcus Johaanilious</div>
+
+            <div class="quote-area">
+                <div class="quote-text fade-in" id="quoteText">Loading…</div>
+            </div>
+
+            <div class="nav">
+                <button class="nav-btn prev" id="prevBtn">
+                    <span class="icon">←</span> Prev
+                </button>
+                <button class="nav-btn next" id="nextBtn">
+                    Next <span class="icon">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            "The only person you are destined to become is the person you decide to be.",
+            "In the middle of difficulty lies opportunity.",
+            "What you get by achieving your goals is not as important as what you become.",
+            "The way to get started is to quit talking and begin doing.",
+            "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+            "It does not matter how slowly you go as long as you do not stop.",
+            "Our greatest glory is not in never falling, but in rising every time we fall.",
+            "The mind is everything. What you think you become.",
+            "Happiness is not something ready made. It comes from your own actions.",
+            "The only way to do great work is to love what you do.",
+            "If you want to lift yourself up, lift up someone else.",
+            "Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless.",
+            "Don't be pushed around by the problems in your life. Be pushed by your dreams.",
+            "Strength does not come from physical capacity. It comes from an indomitable will.",
+            "The secret of getting ahead is getting started.",
+            "Believe you can and you're halfway there.",
+            "It's not whether you get knocked down, it's whether you get up.",
+            "Failure is simply the opportunity to begin again, this time more intelligently.",
+            "Change your thoughts and you change your world.",
+            "You miss 100 percent of the shots you don't take.",
+            "The best time to plant a tree was twenty years ago. The second best time is now.",
+            "Act as if what you do makes a difference. It does.",
+            "What we fear doing most is usually what we most need to do.",
+            "Do not wait to strike till the iron is hot, but make it hot by striking.",
+            "Dream big and dare to fail.",
+            "Your time is limited, so don't waste it living someone else's life.",
+            "Remember that you are going to die is the best way to avoid the trap of thinking you have something to lose.",
+            "The only way to be truly satisfied is to do what you believe is great work.",
+            "You can't connect the dots looking forward. You have to trust that the dots will connect in your future.",
+            "Stay hungry. Stay foolish.",
+            "The unexamined life is not worth living.",
+            "I know that I am intelligent because I know that I know nothing.",
+            "To find yourself, think for yourself.",
+            "Education is the kindling of a flame, not the filling of a vessel.",
+            "It is not that I'm so smart. But I stay with the questions much longer.",
+            "The only true wisdom is in knowing you know nothing.",
+            "The journey of a thousand miles begins with one step.",
+            "He who conquers himself is the mightiest warrior.",
+            "Be yourself. Everyone else is already taken.",
+            "Two things are infinite, the universe and human stupidity, and I'm not sure about the universe.",
+            "Life is what happens when you're busy making other plans.",
+            "It is better to be hated for what you are than to be loved for what you are not.",
+            "The only thing necessary for the triumph of evil is for good men to do nothing.",
+            "In three words I can sum up everything I've learned about life: it goes on.",
+            "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+            "Don't judge each day by the harvest you reap but by the seeds that you plant.",
+            "The purpose of our lives is to be happy.",
+            "Life is really simple, but we insist on making it complicated.",
+            "It is during our darkest moments that we must focus to see the light.",
+            "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+            "In the end, it's not the years in your life that count. It's the life in your years.",
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "The purpose of life is a life of purpose.",
+            "You must be the change you wish to see in the world.",
+            "If you're going through hell, keep going.",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            "The only impossible journey is the one you never begin.",
+            "Life isn't about finding yourself. Life is about creating yourself.",
+            "Whether you think you can or you think you can't, you're right.",
+            "The best revenge is massive success.",
+            "Don't let yesterday take up too much of today.",
+            "A person who never made a mistake never tried anything new.",
+            "It's not the load that breaks you down, it's the way you carry it.",
+            "Without struggle, there is no progress.",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+            "Great minds discuss ideas. Average minds discuss events. Small minds discuss people.",
+            "Our lives begin to end the day we become silent about things that matter.",
+            "Only a life lived for others is a life worthwhile.",
+            "Try not to become a man of success, but rather become a man of value.",
+            "Success is not the key to happiness. Happiness is the key to success.",
+            "If you love life, don't waste time, for time is what life is made of.",
+            "No one can make you feel inferior without your consent.",
+            "What you do speaks so loudly that I cannot hear what you say.",
+            "Start where you are. Use what you have. Do what you can.",
+            "It's not what happens to you, but how you react to it that matters.",
+            "The mind is not a vessel to be filled, but a fire to be kindled.",
+            "A journey of self-discovery begins with a single honest question.",
+            "Your present circumstances don't determine where you can go. They merely determine where you start.",
+            "Courage is not the absence of fear, but the triumph over it.",
+            "Some people want it to happen, some wish it would happen, others make it happen.",
+            "The best way to predict the future is to create it.",
+            "We become what we think about.",
+            "Champions are made from something they have deep inside them. A desire. A dream. A vision.",
+            "Be not afraid of growing slowly. Be afraid only of standing still.",
+            "There is no passion to be found playing small, in settling for a life that is less than the one you are capable of living.",
+            "Life is never made unbearable by circumstances, but only by lack of meaning and purpose.",
+            "Everything you've ever wanted is on the other side of fear.",
+            "The secret of change is to focus all of your energy not on fighting the old, but on building the new.",
+            "Don't be afraid to give up the good to go for the great.",
+            "Perfection is not attainable, but if we chase perfection we can catch excellence.",
+            "The only limit to our realization of tomorrow is our doubts of today.",
+            "You don't have to be great to start, but you have to start to be great.",
+            "Character cannot be developed in ease and quiet. Only through experience of trial and suffering can the soul be strengthened.",
+            "The most difficult thing is the decision to act, the rest is merely tenacity.",
+            "The only person you should try to be better than is the person you were yesterday.",
+            "It is never too late to be what you might have been.",
+            "The darkest hour has only sixty minutes.",
+            "What you get by achieving your goals is not as important as what you become by achieving them.",
+            "Turn your wounds into wisdom.",
+            "Never let the fear of striking out keep you from playing the game.",
+            "Life shrinks or expands in proportion to one's courage.",
+            "The bravest sight in the world is to see a great man struggling against adversity.",
+            "When you arise in the morning, think of what a precious privilege it is to be alive, to breathe, to think, to enjoy, to love."
+        ];
+
+        let currentIndex = 0;
+        const quoteText = document.getElementById('quoteText');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function displayQuote(index) {
+            if (index < 0) index = 0;
+            if (index >= quotes.length) index = quotes.length - 1;
+            currentIndex = index;
+
+            quoteText.classList.remove('fade-in');
+            void quoteText.offsetWidth;
+            quoteText.textContent = quotes[currentIndex];
+            quoteText.classList.add('fade-in');
+
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === quotes.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) displayQuote(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < quotes.length - 1) displayQuote(currentIndex + 1);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
+                prevBtn.click();
+                e.preventDefault();
+            } else if (e.key === 'ArrowRight' && !nextBtn.disabled) {
+                nextBtn.click();
+                e.preventDefault();
+            }
+        });
+
+        displayQuote(0);
+    </script>
+
+</body>
+</html>
